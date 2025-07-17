@@ -5,17 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Family Update</title>
   <style>
-    :root {
-      --bg-light: #fff8e1;
-      --bg-dark: #2b2b2b;
-      --text-light: #333;
-      --text-dark: #eee;
-      --btn-bg: #ffca28;
-    }
-
     body {
-      background-color: var(--bg-light);
-      color: var(--text-light);
+      background-color: #fff8e1;
       font-family: 'Segoe UI', sans-serif;
       display: flex;
       justify-content: center;
@@ -23,13 +14,9 @@
       height: 100vh;
       margin: 0;
       flex-direction: column;
+      color: #333;
+      text-align: center;
       padding: 20px;
-      transition: background 0.5s, color 0.5s;
-    }
-
-    .dark {
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
     }
 
     #card {
@@ -39,23 +26,17 @@
       padding: 30px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.15);
       max-width: 400px;
-      text-align: center;
       display: none;
-    }
-    .dark #card {
-      background: #444;
-      border-color: #ffca28;
     }
 
     button {
       padding: 12px 24px;
       font-size: 16px;
-      background-color: var(--btn-bg);
+      background-color: #ffca28;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       transition: background 0.3s ease;
-      margin: 10px;
     }
 
     button:hover {
@@ -77,12 +58,50 @@
   </style>
 </head>
 <body>
+
   <h2>🔔 Hey Vini, there's a special update waiting...</h2>
   <p>This might be the most important release note of your life.</p>
-  <div>
-    <button onclick="startReveal()">Check for Update</button>
-    <button onclick="toggleDark()">Toggle Dark Mode</button>
-  </div>
+  <button onclick="startReveal()">Check for Update</button>
 
   <div id="card">
-    <h3>👨‍👩‍
+    <h3>👨‍👩‍👧‍👦 New Family Update Deployed!</h3>
+    <p class="fade-in"><strong>Version:</strong> Baby 1.0</p>
+    <p class="fade-in"><strong>Message:</strong> You're going to be a dad! 🍼💛</p>
+    <p class="fade-in">This is the beginning of a new chapter in our family.</p>
+    <p class="fade-in"><em>— With love, your wife ❤️</em></p>
+  </div>
+
+  <script>
+    function startReveal() {
+      const button = document.querySelector('button');
+      const card = document.getElementById('card');
+      const logLines = [
+        "🔍 Scanning for life changes...",
+        "🔄 Running diagnostics...",
+        "💡 Major life event detected!",
+        "🔐 Decrypting surprise...",
+        "🎉 Update ready!"
+      ];
+
+      button.disabled = true;
+      button.innerText = "Loading...";
+      let index = 0;
+
+      const revealInterval = setInterval(() => {
+        if (index < logLines.length) {
+          const line = document.createElement("p");
+          line.className = "log-line fade-in";
+          line.innerText = logLines[index++];
+          document.body.appendChild(line);
+        } else {
+          clearInterval(revealInterval);
+          button.style.display = "none";
+          card.style.display = "block";
+          card.classList.add("fade-in");
+        }
+      }, 1000);
+    }
+  </script>
+
+</body>
+</html>
